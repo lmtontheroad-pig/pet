@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+
+# Local Codex/app investigation artifacts.
+tmp_asar/
+
+# Intermediate generated art and backups.
+**/spritesheet.png
+**/spritesheet-preview-dark.png
+**/spritesheet-reference-generated.png
+**/spritesheet-before-*.webp
+
+# The final pets use hand/art-generated spritesheets, not procedural generators.
+**/generate_spritesheet.py

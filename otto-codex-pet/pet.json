@@ -1,0 +1,6 @@
+{
+  "id": "otto",
+  "displayName": "Otto",
+  "description": "A tiny pixel otter companion for Codex.",
+  "spritesheetPath": "spritesheet.webp"
+}
