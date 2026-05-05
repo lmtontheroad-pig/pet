@@ -1,9 +1,10 @@
 # Codex Pets
 
-这个仓库收集 Codex 自定义宠物图集。目前包含两只宠物：
+这个仓库收集 Codex 自定义宠物图集。目前包含三只宠物：
 
 - `otto-codex-pet`：戴绿色睡帽的小水獭 Otto。
 - `chouchou-codex-pet`：奶油色虎斑小猫 Chouchou。
+- `zhuchouta-codex-pet`：小猪、小水獭和虎斑小猫组成的组合宠物 Zhuchouta。
 
 每个宠物项目都可以独立安装。项目内包含：
 
@@ -29,6 +30,13 @@ Chouchou：
 ```powershell
 cd .\chouchou-codex-pet
 .\setup-chouchou-pet.ps1 -SpritePath .\spritesheet.webp
+```
+
+Zhuchouta：
+
+```powershell
+cd .\zhuchouta-codex-pet
+.\setup-zhuchouta-pet.ps1 -SpritePath .\spritesheet.webp
 ```
 
 安装完成后，打开 Codex：
