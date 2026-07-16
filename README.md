@@ -1,80 +1,78 @@
 # Codex Pets
 
-这个仓库收集 Codex 自定义宠物图集。目前包含三只宠物：
+这个仓库收集可独立安装的 Codex 自定义宠物。目前包含：
 
-- `otto-codex-pet`：戴绿色睡帽的小水獭 Otto。
-- `chouchou-codex-pet`：奶油色虎斑小猫 Chouchou。
-- `zhuchouta-codex-pet`：小猪、小水獭和虎斑小猫组成的组合宠物 Zhuchouta。
+- `otto-codex-pet`：Otto，V1，戴绿色睡帽的小水獭。
+- `chouchou-codex-pet`：Chouchou，V2，支持 16 个环视方向的奶油色虎斑小猫。
+- `zhuchouta-codex-pet`：Zhuchouta，V1，由小猪、小水獭和虎斑小猫组成的组合宠物。
 
-每个宠物项目都可以独立安装。项目内包含：
+每个宠物目录采用相同的 GitHub 发布结构：
+
+```text
+<pet>-codex-pet/
+├── README.md
+├── pet.json
+├── spritesheet.webp
+├── spritesheet-preview.png
+├── setup-<pet>-pet.ps1
+└── validate_spritesheet.py
+```
 
 - `pet.json`：Codex 自定义宠物清单。
-- `spritesheet.webp`：透明背景宠物图集。
-- `spritesheet-preview.png`：带棋盘格和网格线的预览图，不参与安装。
+- `spritesheet.webp`：正式透明背景图集。
+- `spritesheet-preview.png`：GitHub 预览图，不参与安装。
 - `setup-*-pet.ps1`：Windows 安装脚本。
-- `validate_spritesheet.py`：图集规格校验脚本。
+- `validate_spritesheet.py`：对应版本的图集规格校验脚本。
 
 ## 安装
 
 进入对应宠物目录后运行安装脚本。
 
-Otto：
+Otto V1：
 
 ```powershell
 cd .\otto-codex-pet
 .\setup-otto-pet.ps1 -SpritePath .\spritesheet.webp
 ```
 
-Chouchou：
+Chouchou V2：
 
 ```powershell
 cd .\chouchou-codex-pet
 .\setup-chouchou-pet.ps1 -SpritePath .\spritesheet.webp
 ```
 
-Zhuchouta：
+Zhuchouta V1：
 
 ```powershell
 cd .\zhuchouta-codex-pet
 .\setup-zhuchouta-pet.ps1 -SpritePath .\spritesheet.webp
 ```
 
-安装完成后，打开 Codex：
-
-1. 进入 `Settings > Appearance > Pets`
-2. 选择对应宠物
-3. 如果宠物没有显示，点击 `Wake Pet`
+安装完成后，在 Codex 中进入 `Settings > Appearance > Pets`，选择对应宠物；如果没有显示，点击 `Wake Pet`。
 
 ## 图集规格
 
-Codex 自定义宠物图集使用固定规格：
+所有版本均使用 `192 × 208` 单格和透明背景。
 
-- 文件尺寸：`1536 × 1872`
-- 网格：`8 × 9`
-- 单格尺寸：`192 × 208`
-- 背景：透明
-- 未使用格：完全透明
+| 版本 | 图集尺寸 | 网格 | 内容 |
+| --- | --- | --- | --- |
+| V1 | `1536 × 1872` | `8 × 9` | 9 行标准动画 |
+| V2 | `1536 × 2288` | `8 × 11` | 9 行标准动画、1 个 neutral 帧、16 个环视方向 |
 
-行定义：
+Chouchou V2 的方向行按顺时针排列：
 
-| 行 | 动画 | 使用列 |
-| --- | --- | --- |
-| 0 | idle | 0-5 |
-| 1 | running-right | 0-7 |
-| 2 | running-left | 0-7 |
-| 3 | waving | 0-3 |
-| 4 | jumping | 0-4 |
-| 5 | failed | 0-7 |
-| 6 | waiting | 0-5 |
-| 7 | running | 0-5 |
-| 8 | review | 0-5 |
+- 第 9 行：`000`、`022.5`、`045`、`067.5`、`090`、`112.5`、`135`、`157.5`
+- 第 10 行：`180`、`202.5`、`225`、`247.5`、`270`、`292.5`、`315`、`337.5`
+
+其中 `000` 表示向上，`090` 表示屏幕右侧，`180` 表示向下，`270` 表示屏幕左侧。
 
 ## 校验
 
-每个项目都带有校验脚本：
+每个宠物目录都带有与其版本匹配的校验脚本：
 
 ```powershell
 python .\validate_spritesheet.py .\spritesheet.webp
 ```
 
-校验会检查尺寸、网格和未使用格透明状态。
+校验会检查图集尺寸、网格、使用格内容和未使用格透明状态；Chouchou V2 还会检查完全透明像素的 RGB 残留。
