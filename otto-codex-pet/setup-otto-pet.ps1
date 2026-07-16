@@ -47,6 +47,7 @@ $manifestObject = [ordered]@{
     id = $PetId
     displayName = $DisplayName
     description = $Description
+    spriteVersionNumber = 2
     spritesheetPath = "spritesheet.webp"
 }
 

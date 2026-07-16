@@ -2,5 +2,6 @@
   "id": "otto",
   "displayName": "Otto",
   "description": "A tiny pixel otter companion for Codex.",
+  "spriteVersionNumber": 2,
   "spritesheetPath": "spritesheet.webp"
 }
