@@ -1,61 +1,73 @@
 # Codex Pets
 
-这个仓库收集 Codex 自定义宠物图集。目前包含三只宠物：
+这个仓库收集可独立安装的 Codex 自定义宠物。目前包含：
 
-- `otto-codex-pet`：戴绿色睡帽的小水獭 Otto，已升级到 Pet v2，支持 16 个注视方向。
-- `chouchou-codex-pet`：奶油色虎斑小猫 Chouchou。
-- `zhuchouta-codex-pet`：小猪、小水獭和虎斑小猫组成的组合宠物 Zhuchouta。
+- `chouchou-codex-pet`：Chouchou，Pet v2，支持 neutral 帧和 16 个环视方向的奶油色虎斑小猫。
+- `otto-codex-pet`：Otto，Pet v2，支持 neutral 帧和 16 个注视方向的戴绿色睡帽小水獭。
+- `zhuchouta-codex-pet`：Zhuchouta，Pet v1，由小猪、小水獭和虎斑小猫组成的组合宠物。
 
-每个宠物项目都可以独立安装。项目内包含：
+## 下载后直接使用
 
-- `pet.json`：Codex 自定义宠物清单。
-- `spritesheet.webp`：透明背景宠物图集。
-- `spritesheet-preview.png`：带棋盘格和网格线的预览图，不参与安装。
-- `setup-*-pet.ps1`：Windows 安装脚本。
-- `validate_spritesheet.py`：与该宠物版本匹配的图集校验脚本。
+1. 点击 GitHub 的 `Code > Download ZIP`，然后解压。
+2. 打开普通 Windows PowerShell，进入要安装的宠物目录。
+3. 运行该目录内的安装脚本。
 
-## 安装
-
-进入对应宠物目录后运行安装脚本。
-
-Otto：
-
-```powershell
-cd .\otto-codex-pet
-.\setup-otto-pet.ps1 -SpritePath .\spritesheet.webp
-```
-
-Chouchou：
+安装 Chouchou v2：
 
 ```powershell
 cd .\chouchou-codex-pet
 .\setup-chouchou-pet.ps1 -SpritePath .\spritesheet.webp
 ```
 
-Zhuchouta：
+安装 Otto v2：
 
 ```powershell
-cd .\zhuchouta-codex-pet
-.\setup-zhuchouta-pet.ps1 -SpritePath .\spritesheet.webp
+cd .\otto-codex-pet
+.\setup-otto-pet.ps1 -SpritePath .\spritesheet.webp
 ```
 
-安装完成后，打开 Codex：
+如果 PowerShell 阻止本地脚本执行，可以只对本次安装使用：
 
-1. 进入 `Settings > Appearance > Pets`
-2. 选择对应宠物
-3. 如果宠物没有显示，点击 `Wake Pet`
+```powershell
+powershell -ExecutionPolicy Bypass -File .\setup-otto-pet.ps1 -SpritePath .\spritesheet.webp
+```
+
+安装脚本会把 `pet.json` 和 `spritesheet.webp` 一起写入 `%USERPROFILE%\.codex\pets\<pet-id>`。安装后打开 Codex，进入 `Settings > Appearance > Pets` 选择对应宠物；如果没有显示，点击 `Wake Pet`。
+
+Python 与 Pillow 只用于安装前自动校验；没有安装时，脚本会跳过校验并继续复制已经随仓库验证通过的正式文件。
+
+## GitHub 目录结构
+
+每个宠物目录都保留可独立下载、校验和安装的发布文件：
+
+```text
+<pet>-codex-pet/
+├── README.md
+├── pet.json
+├── spritesheet.webp
+├── spritesheet-preview.png
+├── setup-<pet>-pet.ps1
+└── validate_spritesheet.py
+```
+
+部分目录还包含 `art_prompt.txt`，用于记录角色美术与图集规范，不参与安装。
 
 ## 图集版本
 
 | 项目 | Sprite 版本 | 总尺寸 | 网格 | 单格 |
 | --- | --- | --- | --- | --- |
+| Chouchou | v2 | `1536 × 2288` | `8 × 11` | `192 × 208` |
 | Otto | v2 | `1536 × 2288` | `8 × 11` | `192 × 208` |
-| Chouchou | v1 | `1536 × 1872` | `8 × 9` | `192 × 208` |
 | Zhuchouta | v1 | `1536 × 1872` | `8 × 9` | `192 × 208` |
 
-所有图集均使用透明背景，未使用格必须完全透明。Otto v2 在第 0 行第 6 列增加 neutral 中性帧，并在第 9–10 行提供 16 个注视方向。每个子目录的 README 和校验脚本是对应宠物的完整规格来源。
+所有图集均使用透明背景，未使用格必须完全透明。Pet v2 的第 0 行第 6 列是 neutral 帧，第 9–10 行依次提供 16 个方向：
 
-## 校验
+- 第 9 行：`000`、`022.5`、`045`、`067.5`、`090`、`112.5`、`135`、`157.5`
+- 第 10 行：`180`、`202.5`、`225`、`247.5`、`270`、`292.5`、`315`、`337.5`
+
+其中 `000` 表示向上，`090` 表示屏幕右侧，`180` 表示向下，`270` 表示屏幕左侧。
+
+## 手动校验
 
 在对应宠物目录内运行：
 
@@ -63,4 +75,4 @@ cd .\zhuchouta-codex-pet
 python .\validate_spritesheet.py .\spritesheet.webp
 ```
 
-校验会检查尺寸、网格、已使用格和未使用格的透明状态；Otto v2 还会检查清单版本与透明像素 RGB 残留。
+Chouchou 和 Otto 的 v2 校验器会检查清单版本、`8 × 11` 图集尺寸、已使用格内容、未使用格透明状态，以及完全透明像素的 RGB 残留。

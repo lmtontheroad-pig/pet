@@ -2,5 +2,6 @@
   "id": "chouchou",
   "displayName": "Chouchou",
   "description": "A tiny cream tabby cat companion for Codex.",
+  "spriteVersionNumber": 2,
   "spritesheetPath": "spritesheet.webp"
 }
