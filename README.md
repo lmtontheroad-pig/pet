@@ -4,7 +4,7 @@
 
 - `otto-codex-pet`：Otto，V1，戴绿色睡帽的小水獭。
 - `chouchou-codex-pet`：Chouchou，V2，支持 16 个环视方向的奶油色虎斑小猫。
-- `zhuchouta-codex-pet`：Zhuchouta，V1，由小猪、小水獭和虎斑小猫组成的组合宠物。
+- `zhuchouta-codex-pet`：Zhuchouta，V2，由小猪、小水獭和虎斑小猫组成，支持 16 个环视方向。
 
 每个宠物目录采用相同的 GitHub 发布结构：
 
@@ -42,7 +42,7 @@ cd .\chouchou-codex-pet
 .\setup-chouchou-pet.ps1 -SpritePath .\spritesheet.webp
 ```
 
-Zhuchouta V1：
+Zhuchouta V2：
 
 ```powershell
 cd .\zhuchouta-codex-pet
@@ -60,7 +60,7 @@ cd .\zhuchouta-codex-pet
 | V1 | `1536 × 1872` | `8 × 9` | 9 行标准动画 |
 | V2 | `1536 × 2288` | `8 × 11` | 9 行标准动画、1 个 neutral 帧、16 个环视方向 |
 
-Chouchou V2 的方向行按顺时针排列：
+Chouchou 与 Zhuchouta V2 的方向行按顺时针排列：
 
 - 第 9 行：`000`、`022.5`、`045`、`067.5`、`090`、`112.5`、`135`、`157.5`
 - 第 10 行：`180`、`202.5`、`225`、`247.5`、`270`、`292.5`、`315`、`337.5`
@@ -75,4 +75,4 @@ Chouchou V2 的方向行按顺时针排列：
 python .\validate_spritesheet.py .\spritesheet.webp
 ```
 
-校验会检查图集尺寸、网格、使用格内容和未使用格透明状态；Chouchou V2 还会检查完全透明像素的 RGB 残留。
+校验会检查图集尺寸、网格、使用格内容和未使用格透明状态；V2 宠物还会检查完全透明像素的 RGB 残留。

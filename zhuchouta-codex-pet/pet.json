@@ -2,5 +2,6 @@
   "id": "zhuchouta",
   "displayName": "Zhuchouta",
   "description": "A tiny pig, otter, and tabby cat trio companion for Codex.",
+  "spriteVersionNumber": 2,
   "spritesheetPath": "spritesheet.webp"
 }

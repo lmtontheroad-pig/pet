@@ -47,6 +47,7 @@ $manifestObject = [ordered]@{
     id = $PetId
     displayName = $DisplayName
     description = $Description
+    spriteVersionNumber = 2
     spritesheetPath = "spritesheet.webp"
 }
 
@@ -55,7 +56,7 @@ $manifestPath = Join-Path $petDir "pet.json"
 [System.IO.File]::WriteAllText($manifestPath, $manifestJson, [System.Text.UTF8Encoding]::new($false))
 
 Write-Host ""
-Write-Host "安装完成。"
+Write-Host "Zhuchouta V2 安装完成。"
 Write-Host "宠物目录：$petDir"
 Write-Host "图集文件：$targetSpritePath"
 Write-Host "清单文件：$manifestPath"
