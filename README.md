@@ -4,7 +4,7 @@
 
 - `chouchou-codex-pet`：Chouchou，Pet v2，支持 neutral 帧和 16 个环视方向的奶油色虎斑小猫。
 - `otto-codex-pet`：Otto，Pet v2，支持 neutral 帧和 16 个注视方向的戴绿色睡帽小水獭。
-- `zhuchouta-codex-pet`：Zhuchouta，Pet v1，由小猪、小水獭和虎斑小猫组成的组合宠物。
+- `zhuchouta-codex-pet`：Zhuchouta，Pet v2，由小猪、小水獭和虎斑小猫组成，支持 neutral 帧和 16 个环视方向。
 
 ## 下载后直接使用
 
@@ -24,6 +24,13 @@ cd .\chouchou-codex-pet
 ```powershell
 cd .\otto-codex-pet
 .\setup-otto-pet.ps1 -SpritePath .\spritesheet.webp
+```
+
+安装 Zhuchouta v2：
+
+```powershell
+cd .\zhuchouta-codex-pet
+.\setup-zhuchouta-pet.ps1 -SpritePath .\spritesheet.webp
 ```
 
 如果 PowerShell 阻止本地脚本执行，可以只对本次安装使用：
@@ -58,7 +65,7 @@ Python 与 Pillow 只用于安装前自动校验；没有安装时，脚本会�
 | --- | --- | --- | --- | --- |
 | Chouchou | v2 | `1536 × 2288` | `8 × 11` | `192 × 208` |
 | Otto | v2 | `1536 × 2288` | `8 × 11` | `192 × 208` |
-| Zhuchouta | v1 | `1536 × 1872` | `8 × 9` | `192 × 208` |
+| Zhuchouta | v2 | `1536 × 2288` | `8 × 11` | `192 × 208` |
 
 所有图集均使用透明背景，未使用格必须完全透明。Pet v2 的第 0 行第 6 列是 neutral 帧，第 9–10 行依次提供 16 个方向：
 
@@ -75,4 +82,4 @@ Python 与 Pillow 只用于安装前自动校验；没有安装时，脚本会�
 python .\validate_spritesheet.py .\spritesheet.webp
 ```
 
-Chouchou 和 Otto 的 v2 校验器会检查清单版本、`8 × 11` 图集尺寸、已使用格内容、未使用格透明状态，以及完全透明像素的 RGB 残留。
+三个宠物的 v2 校验器都会检查清单版本、`8 × 11` 图集尺寸、已使用格内容、未使用格透明状态，以及完全透明像素的 RGB 残留。
